@@ -7,6 +7,7 @@ import android.hardware.SensorManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -18,6 +19,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
+
 
 
     SensorManager sensorMgr;
@@ -45,15 +47,29 @@ public class MainActivity extends AppCompatActivity {
         width = display.widthPixels;
         height = display.heightPixels;
 
-        for (int x = 0; x < 2;x++){
+        for (int x = 0; x < 4;x++){
             Random random = new Random();
             ImageView img = new ImageView(getApplicationContext());
-            img.setImageDrawable(getDrawable(R.drawable.cepedacalvo));
-            int posY = random.nextInt((height/2) - 500 + 1) + 500;
-            int posX = random.nextInt((width/2) - 500 + 1) + 500;
+            img.setImageDrawable(getDrawable(R.drawable.pokeball));
+            int posX;
+            int posY;
+            if(x%2==0){
+                posY = random.nextInt((height/2) - 500 ) + 500;
+                posX = random.nextInt((width/2) - 500 ) + 500;
+                velocitatX= random.nextInt(50-20)+0;
+                velocitatY= random.nextInt(50-20)+0;
+            }else{
+                posY = random.nextInt((height/2) - 500 ) + 100;
+                posX = random.nextInt((width/2) - 500 ) + 100;
+                velocitatX= random.nextInt(50-20)+0;
+                velocitatY= random.nextInt(50-20)+0;
+            }
+
 
             //Log.v("pos", Integer.toString(n));
 
+            velocitatX = random.nextInt(80 - 65)+65;
+            Log.v("pos", (velocitatX+" "+velocitatY));
 
             img.setX(posX);
             img.setY(posY);
